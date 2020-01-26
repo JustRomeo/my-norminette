@@ -19,8 +19,8 @@ static int O1error(void)
     while (print != NULL) {
         name('~', &nb_error, print, 0);
         name('#', &nb_error, print, 0);
-        name('~', &nb_error, print, my_strlen(print->d_name) - 1);
-        name('o', &nb_error, print, my_strlen(print->d_name) - 1);
+        name('~', &nb_error, print, strlen(print->d_name) - 1);
+        name('o', &nb_error, print, strlen(print->d_name) - 1);
         print = readdir(fd);
     }
     return (nb_error);
@@ -35,7 +35,7 @@ static int O2error(void)
     struct dirent *print;
 
     print = readdir(fd);
-    while (print != NULL) {
+    while (print) {
         notname(&nb_error, print);
         print = readdir(fd);
     }
@@ -50,7 +50,7 @@ static int O3error(char **file, char *name)
     int i = 0;
     int status = 0;
 
-    for (i = 4; file[i] != NULL; i ++) {
+    for (i = 4; file[i]; i ++) {
         for (int c = 0; file[i][c]; c ++) {
             if (file[i][c] == '{') {
                 nb_brackets ++;

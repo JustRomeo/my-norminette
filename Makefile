@@ -21,7 +21,6 @@ SRC =	$(FPSRC)main.c			\
 		$(FPEPI)o_error.c		\
 		$(FPEPI)v_error.c		\
 		$(FPEPI)h_error.c		\
-		$(FPEPI)other_error.c	\
 		$(FPSRC)lookingfor.c	\
 
 OBJ =	$(SRC:.c=.o)
@@ -30,13 +29,15 @@ CFLAGS = -Iinclude/ -Llib/my -lmy
 
 NAME =	norminette
 
+WALL = -W -Wall -Wextra
+
 CC	=	gcc -g3
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
 			make -C ./lib/my
-			gcc -o $(NAME) $(OBJ) $(CFLAGS)
+			gcc -o $(NAME) $(OBJ) $(CFLAGS) $(WALL)
 			rm -f $(OBJ)
 
 clean:

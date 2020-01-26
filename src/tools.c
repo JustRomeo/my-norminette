@@ -30,7 +30,7 @@ void name(char c, int *nb_error, struct dirent *print, int z)
 
 void notname(int *nb_error, struct dirent *print)
 {
-    char *str = my_strcpy(str, my_revstr(print->d_name));
+    char *str = strdup(my_revstr(print->d_name));
 
     if (my_str("c.", print->d_name) != 0 && my_str("h.", print->d_name) != 0 &&
         my_strcmp("Makefile", print->d_name) != 0 &&
@@ -44,12 +44,15 @@ void notname(int *nb_error, struct dirent *print)
 
 int output(char *str)
 {
-    char *out = "[ERROR] ";
+    char *out = strdup("[ERROR] ");
 
     if (str)
-        out = my_strcat(out, str);
-    out = my_strcat(out, " :/");
+        out = strcat(out, str);
+    out = strcat(out, " :/");
+    printf("%s\n", out);
     if (str)
         free(str);
+    if (out)
+        free(out);
     return (84);
 }

@@ -28,10 +28,8 @@ static int F2error(char **file, char *name)
             my_str("char **", file[i]) == 0 || my_str("void", file[i]) == 0) {
             for (w = 0; file[i][w] && file[i][w] != ' '; w ++);
             for (w ++; file[i][w] && file[i][w] == '*'; w ++);
-            if ((file[i][w] > 47 && file[i][w] < 58) ||
-                (file[i][w] > 64 && file[i][w] < 91)) {
+            if ((file[i][w] > 47 && file[i][w] < 58) || (file[i][w] > 64 && file[i][w] < 91))
                 printf("\t--> F2: Line : %d\t%s\n", i + 1, name);
-            }
         }
         nb_dot = 0;
     }

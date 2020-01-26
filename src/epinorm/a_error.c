@@ -26,7 +26,7 @@ static int A2error(char **file, char *name)
 
 int A_error(char **file, norm_s *fault, f_norm *norm, char *name)
 {
-    if (!name|| !file || !file[0])
+    if (!name || !file || !file[0])
         return (0);
     norm->A1 += A1error(file, name);
     norm->A2 += A2error(file, name);

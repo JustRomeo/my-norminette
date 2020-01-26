@@ -13,7 +13,7 @@ static int L1error(char **file, char *name)
     int nb_char = 0;
     int nb_error = 0;
 
-    for (int y = 0; file[y] != NULL; y ++) 
+    for (int y = 0; file[y] != NULL; y ++)
         if (my_str("for", beautifull_str(file[y])) != 0)
             for (int c = 0; file[y][c]; c ++)
                 if (file[y][c] == ';' && file[y][c + 1] != '\0')
