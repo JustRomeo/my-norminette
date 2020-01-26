@@ -49,5 +49,6 @@ f_norm *init_norm(void);
 norm_s *init_fault(void);
 int print_type(f_norm *norm);
 int cdisok(char *str);
+void free_all(char *str1, char *str2, char *str3, char **tab, char ***tab2);
 
 #endif

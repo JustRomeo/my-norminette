@@ -25,14 +25,14 @@ static int ui_mouli(char ***file, char **name, norm_s *fault, f_norm *norm)
 static int many_file(char *str, norm_s *fault, f_norm *norm)
 {
     DIR *fd = 0;
+    int nb_f = 0;
     FILE *sfd = 0;
     char *bcp = NULL;
-    char *path = strdup("./");
-    char ***buffer = NULL;
-    char **name_buffer = NULL;
     size_t size_bcp = 0;
     struct dirent *print;
-    int nb_f = 0;
+    char ***buffer = NULL;
+    char **name_buffer = NULL;
+    char *path = strdup("./");
 
     if (str && str[0] && str[0] != '.')
         strcat(path, str);
@@ -70,29 +70,8 @@ static int many_file(char *str, norm_s *fault, f_norm *norm)
     }
     buffer[nb_f] = NULL;
     name_buffer[nb_f] = NULL;
-    printf("rec = [%d]\n", rec);
-    if (rec > 0)
-        multi_norminette(buffer, name_buffer, fault, norm);
-    if (rec == 0)
-        ui_mouli(buffer, name_buffer, fault, norm);
-
-    // Free(s)
-    if (str)
-        free(str);
-    if (bcp)
-        free(bcp);
-    if (path)
-        free(path);
-    for (int i = 0; name_buffer[i]; i ++)
-        free(name_buffer[i]);
-    free(name_buffer);
-
-    for (int i = 0; buffer[i]; i ++) {
-        for (int k = 0; buffer[i][k]; k ++)
-            free(buffer[i][k]);
-        free(buffer[i]);
-    }
-    free(buffer);
+    rec > 0 ? multi_norminette(buffer, name_buffer, fault, norm) : ui_mouli(buffer, name_buffer, fault, norm);
+    free_all(str, bcp, path, name_buffer, buffer);
     return (0);
 }
 

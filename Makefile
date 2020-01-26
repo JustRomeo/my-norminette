@@ -22,6 +22,7 @@ SRC =	$(FPSRC)main.c			\
 		$(FPEPI)v_error.c		\
 		$(FPEPI)h_error.c		\
 		$(FPSRC)lookingfor.c	\
+		$(FPSRC)free.c			\
 
 OBJ =	$(SRC:.c=.o)
 
