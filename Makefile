@@ -8,7 +8,7 @@
 FPEPI = src/epinorm/
 FPSRC = src/
 
-SRC =	$(FPSRC)main.c			\
+SRC =	$(FPSRC)main_c_files.c			\
 		$(FPSRC)tools.c			\
 		$(FPSRC)norminette.c	\
 		$(FPSRC)init.c			\

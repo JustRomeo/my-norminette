@@ -75,8 +75,7 @@ static int many_file(char *str, norm_s *fault, f_norm *norm)
     return (0);
 }
 
-int main(int ac, char **av)
-{
+int norminette_c(int ac, char **av) {
     norm_s *fault = init_fault();
     f_norm *norm = init_norm();
     char *str = NULL;
