@@ -1,58 +1,63 @@
 ##
-## Roméo's PROJECT, 2018
+## EPITECH PROJECT, 2018
 ## Makefile
 ## File description:
-## Le Makefile de la NORMINETTE
+## Le Makefile de la lib
 ##
 
-FPEPI = src/epinorm/
-FPSRC = src/
+SRC =	src/main.cpp	\
 
-SRC =	$(FPSRC)main_c_files.c			\
-		$(FPSRC)tools.c			\
-		$(FPSRC)norminette.c	\
-		$(FPSRC)init.c			\
-		$(FPSRC)print.c			\
-		$(FPEPI)a_error.c		\
-		$(FPEPI)c_error.c		\
-		$(FPEPI)f_error.c		\
-		$(FPEPI)g_error.c		\
-		$(FPEPI)l_error.c		\
-		$(FPEPI)o_error.c		\
-		$(FPEPI)v_error.c		\
-		$(FPEPI)h_error.c		\
-		$(FPSRC)lookingfor.c	\
-		$(FPSRC)free.c			\
+SRCT =	tests/test.cpp	\
 
-OBJ =	$(SRC:.c=.o)
+OBJ =	$(SRC:.cpp=.o)
+OBJT =	$(SRC:.c=.o)
 
-CFLAGS = -Iinclude/ -Llib/my -lmy
+CC =	g++
+CRIT =	--coverage -lcriterion
+
+WALL =	-Wall -Wextra -Werror
 
 NAME =	norminette
+CRITERION = unit_tests
 
-WALL = -W -Wall -Wextra
-
-CC	=	gcc -g3
+CPPFLAGS =	-I ./include/	\
+			\
+			-L./library -lnorminette_c
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-			make -C ./lib/my
-			gcc -o $(NAME) $(OBJ) $(CFLAGS) $(WALL)
+			make -C C
+			$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(WALL)
 			rm -f $(OBJ)
 
-clean:
-		rm -f $(OBJ)
-
-fclean:	clean
-		rm -f $(NAME)
-		rm -f ../lib/my/libmy.a
-		rm -f lib/my/libmy.a
-
-re: fclean all
+tests_run:	$(OBJ)
+			$(CC) -o $(CRITERION) $(CRIT) $(OBJ) $(INCLUDE)
+			./$(CRITERION)
 
 valgrind:	$(OBJ)
-			make -C ./lib/my
-			$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
-			rm -f $(OBJ)
-			valgrind ./norminette
+			$(CC) -g3 -o $(NAME) $(OBJ) $(CFLAGS) $(WALL)
+			valgrind ./$(NAME)
+
+exe:	all
+		./$(NAME)
+		rm -vf *.o
+		rm -f $(NAME)
+
+clean_test: $(OBJ)
+			$(CC) -o $(CRITERION) $(CRIT) $(OBJ)
+			./$(CRITERION)
+			gcovr
+			rm -vf *.o
+			rm -vf *.gcno
+			rm -vf *.gcda
+			rm $(CRITERION)
+
+clean:
+	rm -f $(OBJ)
+
+fclean:
+	rm -f $(OBJ)
+	rm -f $(NAME)
+
+re:	fclean all

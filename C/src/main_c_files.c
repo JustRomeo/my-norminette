@@ -7,8 +7,7 @@
 
 #include "prototype.h"
 
-static int ui_mouli(char ***file, char **name, norm_s *fault, f_norm *norm)
-{
+static int ui_mouli(char ***file, char **name, norm_s *fault, f_norm *norm) {
     for (int i = 0; name[i]; i ++)
         printf("\t[%s]\n", name[i]);
     printf("\n\n\tNorminette\n\n\n");
@@ -22,8 +21,7 @@ static int ui_mouli(char ***file, char **name, norm_s *fault, f_norm *norm)
     printf("\n");
 }
 
-static int many_file(char *str, norm_s *fault, f_norm *norm)
-{
+static int many_file(char *str, norm_s *fault, f_norm *norm) {
     DIR *fd = 0;
     int nb_f = 0;
     FILE *sfd = 0;
