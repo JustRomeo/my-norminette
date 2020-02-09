@@ -48,9 +48,3 @@ fclean:	clean
 		rm -f lib/my/libmy.a
 
 re: fclean all
-
-valgrind:	$(OBJ)
-			make -C ./lib/my
-			$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
-			rm -f $(OBJ)
-			valgrind ./norminette

@@ -22,12 +22,14 @@ CRITERION = unit_tests
 
 CPPFLAGS =	-I ./include/	\
 			\
-			-L./library -lnorminette_c
+			-L./library -lnorminette_c		\
+			-L./library -lnorminette_cpp	\
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
 			make -C C
+			make -C CPP
 			$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(WALL)
 			rm -f $(OBJ)
 
