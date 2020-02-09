@@ -5,7 +5,13 @@
 ## Le Makefile de la lib
 ##
 
-SRC =	src/main.cpp	\
+SRCS = src/
+BODY = $(SRCS)Body/
+FLAG = $(SRCS)Flags/
+
+SRC =	$(SRCS)main.cpp		\
+		$(BODY)normimain.cpp	\
+		$(FLAG)infos.cpp	\
 
 SRCT =	tests/test.cpp	\
 

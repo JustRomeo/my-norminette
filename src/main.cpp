@@ -1,18 +1,18 @@
 #include <stdio.h>
+#include <iostream>
+#include "prototype.hpp"
 
-static void usage(void) {
-    printf("USAGE:\n");
-    printf("\t- without agument(s), do all files in the folder.\n");
-    printf("\t- with only one agument, do the file at the path you gave.\n");
-    printf("\n");
-    printf("Langage gestion:\n");
-    printf("  - C\n");
-    printf("  - CPP\n");
-    printf("\n");
+static bool flags_check(std::string str) {
+    if (str == "-usage") usage();
+    else if (str == "-version") version();
+    else return false;
+    return true;
 }
 
 int main(int ac, char **av, char **env) {
-    if (ac > 2)
-        usage();
+    if (ac > 2) return usage();
+    else if (ac == 2 && !flags_check(av[1]));
+
+    normimain(ac, av);
     return 0;
 }
