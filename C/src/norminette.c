@@ -7,8 +7,7 @@
 
 #include "prototype.h"
 
-int multi_norminette(char ***file, char **name, norm_s *fault, f_norm *norm)
-{
+int multi_norminette(char ***file, char **name, norm_s *fault, f_norm *norm) {
     if (!file || !file[0] || !name || !name[0])
         return (0);
     for (int i = 0; file[i]; i ++)

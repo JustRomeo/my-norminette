@@ -19,6 +19,7 @@ OBJ =	$(SRC:.cpp=.o)
 OBJT =	$(SRC:.c=.o)
 
 CC =	g++
+
 CRIT =	--coverage -lcriterion
 
 WALL =	-Wall -Wextra -Werror
@@ -26,9 +27,9 @@ WALL =	-Wall -Wextra -Werror
 NAME =	norminette
 CRITERION = unit_tests
 
-CPPFLAGS =	-I ./include/	\
+CPPFLAGS =	-I./include/		\
 			\
-			-L./library -lnorminette_c		\
+			-L./library -lmy_norminette_c		\
 			-L./library -lnorminette_cpp	\
 
 all:	$(NAME)
@@ -36,8 +37,15 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 			make -C C
 			make -C CPP
-			$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(WALL)
+			$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS) $(WALL)
 			rm -f $(OBJ)
+
+nuke:
+	find . \( -name '*~' \) -print -delete
+	find . \( -name '*.o' \) -print -delete
+	find . \( -name '*.a' \) -print -delete
+	find . \( -name '*.gcno' \) -print -delete
+	find . \( -name '*.gcda' \) -print -delete
 
 tests_run:	$(OBJ)
 			$(CC) -o $(CRITERION) $(CRIT) $(OBJ) $(INCLUDE)

@@ -7,6 +7,18 @@
 
 #include "prototype.h"
 
+// static int one_norminette(char ***file, char **name, norm_s *fault, f_norm *norm) {
+//     A_error(file, fault, norm, name);
+//     C_error(file, fault, norm, name);
+//     F_error(file, fault, norm, name);
+//     G_error(file, fault, norm, name);
+//     H_error(file, fault, norm, name);
+//     L_error(file, fault, norm, name);
+//     O_error(file, fault, norm, name);
+//     V_error(file, fault, norm, name);
+//     return (0);
+// }
+
 static int ui_mouli(char ***file, char **name, norm_s *fault, f_norm *norm) {
     for (int i = 0; name[i]; i ++)
         printf("\t[%s]\n", name[i]);

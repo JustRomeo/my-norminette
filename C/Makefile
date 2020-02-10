@@ -28,7 +28,7 @@ SRC =	$(FPSRC)main_c_files.c	\
 
 OBJ =	$(SRC:.c=.o)
 
-NAME =	norminette_c.a
+NAME =	libmy_norminette_c.a
 
 CC	=	ar rc
 
