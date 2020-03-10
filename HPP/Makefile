@@ -9,12 +9,12 @@ FULLPWD = /home/romeo/norminette/
 
 SRCS = src/
 
-SRC =	$(SRCS)main_cpp_files.cpp	\
+SRC =	$(SRCS)main_hpp_files.cpp	\
 		$(SRCS)file_handler.cpp		\
 
 OBJ =	$(SRC:.cpp=.o)
 
-NAME =	libnorminette_cpp.a
+NAME =	libnorminette_hpp.a
 
 CC	=	ar rc
 

@@ -9,12 +9,12 @@ FULLPWD = /home/romeo/norminette/
 
 SRCS = src/
 
-SRC =	$(SRCS)main_cpp_files.cpp	\
+SRC =	$(SRCS)main_haskell_files.cpp	\
 		$(SRCS)file_handler.cpp		\
 
 OBJ =	$(SRC:.cpp=.o)
 
-NAME =	libnorminette_cpp.a
+NAME =	libnorminette_haskell.a
 
 CC	=	ar rc
 

@@ -29,14 +29,20 @@ CRITERION = unit_tests
 
 CPPFLAGS =	-I./include/		\
 			\
-			-L./library -lmy_norminette_c		\
-			-L./library -lnorminette_cpp	\
+			-L./library -lnorminette_c			\
+			-L./library -lnorminette_asm		\
+			-L./library -lnorminette_cpp		\
+			-L./library -lnorminette_haskell	\
+			-L./library -lnorminette_hpp		\
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-			make -C C
-			make -C CPP
+			make -C C/
+			make -C ASM/
+			make -C CPP/
+			make -C Haskell/
+			make -C HPP/
 			$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS) $(WALL)
 			rm -f $(OBJ)
 

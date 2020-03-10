@@ -8,8 +8,11 @@ int usage(void) {
     printf("\t- with only one agument, do the file at the path you gave.\n");
     printf("\n");
     printf("Langage gestion:\n");
+    printf("  - ASM\n");
     printf("  - C\n");
-    printf("  - CPP\n");
+    printf("  - Cpp\n");
+    printf("  - hpp\n");
+    printf("  - Haskell\n");
     printf("\n");
 
     return 0;

@@ -11,12 +11,8 @@ static void printer_error(string str, int line) {
 }
 
 //tab[i].replace(tab[i].find(";;"), sizeof(";;") - 1, ";");
-int norminette_cpp(string *tab) {
+int norminette_asm(string *tab) {
     for (int i = 0; tab[i] != ""; i ++) {
-        if (tab[i].find(";;") != string::npos) printer_error("/!\\ Info: \";;\"", i);
-        if (tab[i].find("char *") != string::npos) printer_error("/!\\ \"char *\"", i);
-        if (tab[i].find(" ;") != string::npos) printer_error("/!\\ \" ;\" do not need space before ;", i);
-        if (tab[i].find("){") != string::npos) printer_error("/!\\ Info: \'{\' should be separate by a space", i);
         if (tab[i].find("\t") != string::npos) printer_error("/!\\ Info: \"\t\" better to use \"    \" than a tab", i);
     }
     return 0;
