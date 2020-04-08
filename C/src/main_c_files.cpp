@@ -6,7 +6,8 @@ using namespace std;
 
 string *openFile(string str);
 
-static int _functions = 0;
+static size_t unit_test = 0;
+static size_t _functions = 0;
 static bool _write = false;
 static bool _printf = false;
 
@@ -18,9 +19,9 @@ static void printer_error(string str, int line) {
 
 static void split(string str, string splitBy, vector<string>& tokens)
 {
+    string frag;
     size_t splitAt;
     size_t splitLen = splitBy.size();
-    string frag;
 
     tokens.push_back(str);
     while (true) {
@@ -64,16 +65,22 @@ static void proto(string *tab, int indexe) {
     if (tab[i] == "}")
         rem ++;
     i -= rem;
-    if (tab[indexe].find("{") != string::npos)
+    if (tab[indexe].find("{") != string::npos) {
         i --;
+        printer_error("/!\\ \'{\' must be next line, and NOT next to prototype", i);
+    }
     if (i - indexe > 20)
         printf("/!\\ Too long functions %s (%d > 20).\n", fname.c_str(), i - indexe);
 }
 
 int norminette_c(string *tab) {
+    _functions = 0;
+
     for (int i = 0; tab[i] != ""; i ++) {
         if (tab[i].find("//") != string::npos)
             printer_error("/!\\ Info: Commantary !", i);
+        else if (tab[i][0] != ' ' && tab[i][0] != '\t' && tab[i].find("Test") != string::npos)
+            unit_test ++;
         else {
             if (tab[i].find(" write") != string::npos) _write = true;
             if (tab[i].find(" printf") != string::npos) _printf = true;
@@ -90,6 +97,6 @@ int norminette_c(string *tab) {
     if (_write && _printf)
         printf("/!\\ You are using write AND printf in your program.\n");
     if (_functions > 5)
-        printf("/!\\ %d functions in the file, max norme complient it's 5.\n");
+        printf("/!\\ %d functions in the file, max norme complient it's 5.\n", _functions);
     return 0;
 }

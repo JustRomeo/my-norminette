@@ -10,7 +10,7 @@ static void printer_error(string str, int line) {
     printf("%sl.%d\n", str.c_str(), line);
 }
 
-//tab[i].replace(tab[i].find(";;"), sizeof(";;") - 1, ";");
+// tab[i].replace(tab[i].find(";;"), sizeof(";;") - 1, ";");
 int norminette_haskell(string *tab) {
     for (size_t i = 0; tab[i] != ""; i ++) {
         if (tab[i].find("\t") != string::npos) printer_error("/!\\ Info: \"\t\" better to use \"    \" than a tab", i);
