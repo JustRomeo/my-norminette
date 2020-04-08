@@ -2,54 +2,24 @@
 #include <string.h>
 #include <dirent.h>
 #include <unistd.h>
-#include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/types.h>
+
 using namespace std;
 
-string *openFile(string str);
-int norminette_c(string *tab);
-int norminette_asm(string *tab);
-int norminette_cpp(string *tab);
-int norminette_hpp(string *tab);
-int norminette_haskell(string *tab);
+#include "library.hpp"
+#include "prototype.hpp"
 
-static void color_file(string str) {
-    if (str.find(".cpp") != string::npos)
-        printf("%s\n", str.c_str());
-    else if (str.find(".a") != string::npos)
-        printf("%s\n", str.c_str());
-    else if (str.find(".c") != string::npos)
-        printf("%s\n", str.c_str());
-    else if (str.find(".hpp") != string::npos)
-        printf("\e[35m%s\e[0m\n", str.c_str());
-    else if (str.find(".py") != string::npos)
-        printf("%s\n", str.c_str());
-    else if (str.find(".js") != string::npos)
-        printf("%s\n", str.c_str());
-    else if (str.find(".sh") != string::npos)
-        printf("\e[32m%s\e[0m\n", str.c_str());
-    else if (str.find(".hs") != string::npos)
-        printf("%s\n", str.c_str());
-    else if (str.find(".h") != string::npos)
-        printf("\e[35m%s\e[0m\n", str.c_str());
-    else if (str.find(".asm") != string::npos)
-        printf("%s\n", str.c_str());
-    else if (str.find(".o") != string::npos)
-        printf("%s\n", str.c_str());
-    else if (str.find("Makefile") != string::npos)
-        printf("\e[33m%s\e[0m\n", str.c_str());
-    else
-        printf("Unknown Type\n");
-}
 
 static int normifile(string str) {
     char *av[2];
     av[0] = strdup("Exec");
     av[1] = strdup(str.c_str());
 
-    color_file(str.c_str());
+    color_file(str);
     if (str.find(".cpp") != string::npos)
         norminette_cpp(openFile(str));
+    else if (str.find(".json") != string::npos);
     else if (str.find(".a") != string::npos);
     else if (str.find(".c") != string::npos)
         norminette_c(openFile(str));
@@ -72,8 +42,8 @@ static int normifile(string str) {
 
 static int normifolder(int cascade = 0, string filepath = "") {
     string str;
-    struct dirent *print;
     DIR *Folder;
+    struct dirent *print;
 
     if (filepath == "");
     else

@@ -9,11 +9,7 @@ string *openFile(string str);
 static size_t unit_test = 0;
 static size_t _functions = 0;
 
-static void printer_error(string str, int line) {
-    for (int i = str.length(); i < 75; i ++)
-        str += " ";
-    printf("%sl.%d\n", str.c_str(), line);
-}
+void printer_error(string str, int line);
 
 static void split(string str, string splitBy, vector<string>& tokens)
 {

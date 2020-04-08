@@ -8,10 +8,14 @@
 SRCS = src/
 BODY = $(SRCS)Body/
 FLAG = $(SRCS)Flags/
+PRIN = $(SRCS)printer/
 
-SRC =	$(SRCS)main.cpp		\
+SRC =	$(SRCS)main.cpp			\
 		$(BODY)normimain.cpp	\
-		$(FLAG)infos.cpp	\
+		$(FLAG)infos.cpp		\
+		$(PRIN)file.cpp			\
+		$(PRIN)error.cpp		\
+
 
 SRCT =	tests/test.cpp	\
 

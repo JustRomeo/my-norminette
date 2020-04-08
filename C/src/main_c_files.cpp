@@ -11,11 +11,7 @@ static size_t _functions = 0;
 static bool _write = false;
 static bool _printf = false;
 
-static void printer_error(string str, int line) {
-    for (int i = str.length(); i < 75; i ++)
-        str += " ";
-    printf("%sl.%d\n", str.c_str(), line);
-}
+void printer_error(string str, int line);
 
 static void split(string str, string splitBy, vector<string>& tokens)
 {
@@ -60,10 +56,9 @@ static void proto(string *tab, int indexe) {
         return;
     string fname = find_function_name(tab[i]);
     _functions ++;
-    for (; tab[i] != "}" && tab[i] != ""; i ++) {
+    for (; tab[i] != "}" && tab[i] != ""; i ++)
         if (tab[i] == "{")
             rem ++;
-    }
     if (tab[i] == "}")
         rem ++;
     i -= rem;
@@ -95,7 +90,6 @@ int norminette_c(string *tab) {
             if (tab[i].length() > 80) printer_error("\t-> Error: max line length " + to_string(tab[i].length())  + " > 80", i);
         }
     }
-
     if (_write && _printf)
         printf("\t-> You are using write AND printf in your program.\n");
     if (_functions > 5)
