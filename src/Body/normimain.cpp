@@ -13,36 +13,58 @@ int norminette_cpp(string *tab);
 int norminette_hpp(string *tab);
 int norminette_haskell(string *tab);
 
+static void color_file(string str) {
+    if (str.find(".cpp") != string::npos)
+        printf("%s\n", str.c_str());
+    else if (str.find(".a") != string::npos)
+        printf("%s\n", str.c_str());
+    else if (str.find(".c") != string::npos)
+        printf("%s\n", str.c_str());
+    else if (str.find(".hpp") != string::npos)
+        printf("\e[35m%s\e[0m\n", str.c_str());
+    else if (str.find(".py") != string::npos)
+        printf("%s\n", str.c_str());
+    else if (str.find(".js") != string::npos)
+        printf("%s\n", str.c_str());
+    else if (str.find(".sh") != string::npos)
+        printf("\e[32m%s\e[0m\n", str.c_str());
+    else if (str.find(".hs") != string::npos)
+        printf("%s\n", str.c_str());
+    else if (str.find(".h") != string::npos)
+        printf("\e[35m%s\e[0m\n", str.c_str());
+    else if (str.find(".asm") != string::npos)
+        printf("%s\n", str.c_str());
+    else if (str.find(".o") != string::npos)
+        printf("%s\n", str.c_str());
+    else if (str.find("Makefile") != string::npos)
+        printf("\e[33m%s\e[0m\n", str.c_str());
+    else
+        printf("Unknown Type\n");
+}
+
 static int normifile(string str) {
     char *av[2];
     av[0] = strdup("Exec");
     av[1] = strdup(str.c_str());
 
-    printf("file: %s\n", str.c_str());
+    color_file(str.c_str());
     if (str.find(".cpp") != string::npos)
         norminette_cpp(openFile(str));
-    else if (str.find(".a") != string::npos)
-        printf("compilated lib\n");
+    else if (str.find(".a") != string::npos);
     else if (str.find(".c") != string::npos)
         norminette_c(openFile(str));
     else if (str.find(".hpp") != string::npos)
         norminette_hpp(openFile(str));
-    else if (str.find(".py") != string::npos)
-        printf("it's a Python file\n");
-    else if (str.find(".js") != string::npos)
-        printf("it's a JavaScript file\n");
-    else if (str.find(".sh") != string::npos)
-        printf("it's a ShellScript file\n");
+    else if (str.find(".py") != string::npos);
+    else if (str.find(".js") != string::npos);
+    else if (str.find(".sh") != string::npos);
     else if (str.find(".hs") != string::npos)
         norminette_haskell(openFile(str));
-    else if (str.find(".h") != string::npos)
-        printf("it's a H file\n");
+    else if (str.find(".h") != string::npos);
     else if (str.find(".asm") != string::npos)
         norminette_asm(openFile(str));
-    else if (str.find(".o") != string::npos)
-        printf("\'.o\' file\n");
-    else if (str.find("Makefile") != string::npos)
-        printf("Makefile file\n");
+    else if (str.find(".o") != string::npos);
+    else if (str.find("Makefile") != string::npos);
     else
         printf("i do not recognize this file type ...\n");
     return 0;
