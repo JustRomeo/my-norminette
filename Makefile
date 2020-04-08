@@ -34,6 +34,7 @@ CRITERION = unit_tests
 CPPFLAGS =	-I./include/		\
 			\
 			-L./library -lnorminette_c			\
+			-L./library -lnorminette_h			\
 			-L./library -lnorminette_asm		\
 			-L./library -lnorminette_cpp		\
 			-L./library -lnorminette_haskell	\
@@ -43,6 +44,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 			make -C C/
+			make -C H/
 			make -C ASM/
 			make -C CPP/
 			make -C Haskell/

@@ -1,5 +1,10 @@
 #include <iostream>
+#include <unistd.h>
 using namespace std;
+
+static bool isbinary(const char *filepath) {
+    return access(filepath, F_OK) != -1 ? true : false;
+}
 
 void color_file(string str) {
     if (str.find(".cpp") != string::npos)
@@ -26,6 +31,8 @@ void color_file(string str) {
         printf("%s\n", str.c_str());
     else if (str.find("Makefile") != string::npos)
         printf("\e[33m%s\e[0m\n", str.c_str());
+    else if (isbinary(str.c_str()))
+        printf("\e[32m%s\e[0m\n", str.c_str());
     else
-        printf("Unknown Type\n");
+        printf("Unknown Type: %s\n", str.c_str());
 }

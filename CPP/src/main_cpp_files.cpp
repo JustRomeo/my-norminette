@@ -4,11 +4,10 @@
 
 using namespace std;
 
-string *openFile(string str);
-
 static size_t unit_test = 0;
 static size_t _functions = 0;
 
+string *openFile(string str);
 void printer_error(string str, int line);
 
 static void split(string str, string splitBy, vector<string>& tokens)

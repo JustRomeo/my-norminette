@@ -30,13 +30,12 @@ static int normifile(string str) {
     else if (str.find(".sh") != string::npos);
     else if (str.find(".hs") != string::npos)
         norminette_haskell(openFile(str));
-    else if (str.find(".h") != string::npos);
+    else if (str.find(".h") != string::npos)
+        norminette_h(openFile(str));
     else if (str.find(".asm") != string::npos)
         norminette_asm(openFile(str));
     else if (str.find(".o") != string::npos);
     else if (str.find("Makefile") != string::npos);
-    else
-        printf("i do not recognize this file type ...\n");
     return 0;
 }
 
