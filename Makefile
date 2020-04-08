@@ -46,6 +46,16 @@ $(NAME):	$(OBJ)
 			$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS) $(WALL)
 			rm -f $(OBJ)
 
+CPP:	$(OBJ)
+		make -C CPP/
+		$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS) $(WALL)
+		rm -f $(OBJ)
+
+C:		$(OBJ)
+		make -C C/
+		$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS) $(WALL)
+		rm -f $(OBJ)
+
 nuke:
 	find . \( -name '*~' \) -print -delete
 	find . \( -name '*.o' \) -print -delete

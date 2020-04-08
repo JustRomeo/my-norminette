@@ -18,6 +18,7 @@ int norminette_cpp(string *tab) {
         if (tab[i].find(" ;") != string::npos) printer_error("/!\\ \" ;\" do not need space before ;", i);
         if (tab[i].find("){") != string::npos) printer_error("/!\\ Info: \'{\' should be separate by a space", i);
         if (tab[i].find("\t") != string::npos) printer_error("/!\\ Info: \"\t\" better to use \"    \" than a tab", i);
+        if (tab[i].find("//") != string::npos) printer_error("/!\\ Info: Commantary !", i);
     }
     return 0;
 }

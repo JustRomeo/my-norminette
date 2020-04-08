@@ -21,9 +21,9 @@ int norminette_hpp(string *tab) {
         if (tab[i].find("\t") != string::npos) printer_error("/!\\ Info: \"\t\" better to use \"    \" than a tab", i);
     }
 
-    if (classe > 0)
+    if (classe > 1)
         printf("/!\\ Error: only one class per file is allow, there are %d class in the file.\n", classe);
-    if (!false)
+    if (!shield)
         printf("/!\\ Info: no protection on prototype file, better to protect it.\n");
     return 0;
 }
