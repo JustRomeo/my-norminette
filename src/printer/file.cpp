@@ -1,9 +1,15 @@
 #include <iostream>
 #include <unistd.h>
+#include <sys/stat.h>
+
 using namespace std;
 
 static bool isbinary(const char *filepath) {
-    return access(filepath, F_OK) != -1 ? true : false;
+    struct stat st;
+
+    if (stat(filepath, &st) < 0)
+        return false;
+    return st.st_mode & S_IEXEC != 0 ? true : false;
 }
 
 void color_file(string str) {

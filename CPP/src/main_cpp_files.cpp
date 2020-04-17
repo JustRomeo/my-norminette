@@ -63,7 +63,7 @@ static void proto(string *tab, int indexe) {
     if (tab[indexe].find("{") != string::npos)
         i --;
     if (i - indexe > 20)
-        printf("\t-> Too long functions %s (%d > 20).\n", fname.c_str(), i - indexe);
+        printf("\t-> Too long functions \e[93m%s\e[0m (%d > 20).\n", fname.c_str(), i - indexe);
 }
 
 int norminette_cpp(string *tab) {
