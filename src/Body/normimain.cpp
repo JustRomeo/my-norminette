@@ -19,6 +19,7 @@ static int normifile(string str) {
     color_file(str);
     if (str.find(".cpp") != string::npos)
         norminette_cpp(openFile(str));
+    else if (str.find(".cabal") != string::npos);
     else if (str.find(".json") != string::npos);
     else if (str.find(".a") != string::npos);
     else if (str.find(".c") != string::npos)

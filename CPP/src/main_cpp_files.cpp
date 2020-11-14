@@ -10,8 +10,7 @@ static size_t _functions = 0;
 string *openFile(string str);
 void printer_error(string str, int line);
 
-static void split(string str, string splitBy, vector<string>& tokens)
-{
+static void split(string str, string splitBy, vector<string> &tokens) {
     string frag;
     size_t splitAt;
     size_t splitLen = splitBy.size();
@@ -20,10 +19,10 @@ static void split(string str, string splitBy, vector<string>& tokens)
     while (true) {
         frag = tokens.back();
         splitAt = frag.find(splitBy);
-        if(splitAt == string::npos)
+        if (splitAt == string::npos)
             break;
         tokens.back() = frag.substr(0, splitAt);
-        tokens.push_back(frag.substr(splitAt+splitLen, frag.size() - (splitAt+splitLen)));
+        tokens.push_back(frag.substr(splitAt + splitLen, frag.size() - (splitAt + splitLen)));
     }
 }
 
@@ -53,10 +52,9 @@ static void proto(string *tab, int indexe) {
         return;
     string fname = find_function_name(tab[i]);
     _functions ++;
-    for (; tab[i] != "}" && tab[i] != ""; i ++) {
+    for (; tab[i] != "}" && tab[i] != ""; i ++)
         if (tab[i] == "{")
             rem ++;
-    }
     if (tab[i] == "}")
         rem ++;
     i -= rem;
@@ -74,12 +72,22 @@ int norminette_cpp(string *tab) {
         else if (tab[i][0] != ' ' && tab[i][0] != '\t' && tab[i].find("Test") != string::npos)
             unit_test ++;
         else {
-            if (tab[i].find(";;") != string::npos) printer_error("\t-> Info: \";;\"", i);
-            if (tab[i].find("char *") != string::npos) printer_error("\t-> \"char *\" must be a \"string\"", i);
-            if (tab[i].find(" ;") != string::npos) printer_error("\t-> \" ;\" do not need space before ;", i);
-            if (tab[i].find("){") != string::npos) printer_error("\t-> Info: \'{\' should be separate by a space", i);
-            if (tab[i].find("\t") != string::npos) printer_error("\t-> Info: \"\t\" better to use \"    \" than a tab", i);
-            if (tab[i][0] != ' ' && tab[i][0] != '\t' && tab[i].find("(") != string::npos) proto(tab, i);
+            if (tab[i].find(";;") != string::npos)
+                printer_error("\t-> Info: \";;\"", i);
+            if (tab[i].find("char *") != string::npos)
+                printer_error("\t-> \"char *\" must be a \"string\"", i);
+            if (tab[i].find(" ;") != string::npos)
+                printer_error("\t-> \" ;\" do not need space before ;", i);
+            if (tab[i].find("){") != string::npos)
+                printer_error("\t-> Info: \'{\' should be separate by a space", i);
+            if (tab[i].find("\t") != string::npos)
+                printer_error("\t-> Info: \"\t\" better to use \"    \" than a tab", i);
+            if (tab[i].find(" == true") != string::npos)
+                printer_error("\t-> Info: \" == true\" not usefull", i);
+            if (tab[i].find(" == false") != string::npos)
+                printer_error("\t-> Info: \" == false\" can be replace with a \'!\' before condition", i);
+            if (tab[i][0] != ' ' && tab[i][0] != '\t' && tab[i].find("(") != string::npos)
+                proto(tab, i);
         }
     }
     return 0;

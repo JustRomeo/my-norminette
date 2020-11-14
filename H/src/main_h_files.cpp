@@ -20,7 +20,7 @@ int norminette_h(string *tab) {
 
     for (int i = 0; tab[i] != ""; i ++) {
         if (tab[i].find("#ifndef") != string::npos && tab[i + 1].find("#define") != string::npos) shield = true;
-        if (tab[i].find("\t") != string::npos) printer_error("\t-> Info: \"\t\" better to use \"    \" than a tab", i);
+        if (tab[i].find("\t") != string::npos) printer_error("\t-> Info: \"\\t\" better to use \"    \" than a tab", i);
         if (tab[i].length() > 80) printer_error("\t-> Error: max line length " + to_string(tab[i].length())  + " > 80", i);
     } if (!shield)
         printf("\t-> Info: no protection on prototype file, better to protect it.\n");

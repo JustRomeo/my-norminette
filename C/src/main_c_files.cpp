@@ -108,7 +108,7 @@ int norminette_c(string *tab) {
             if (tab[i].find(" ;") != string::npos) printer_error("\t-> \" ;\" do not need space before ;", i);
             if (tab[i].find("){") != string::npos) printer_error("\t-> Info: \'{\' should be separate by a space", i);
             if (tab[i][0] != ' ' && tab[i][0] != '\t' && tab[i].find("(") != string::npos) proto(tab, i);
-            if (tab[i].find("\t") != string::npos) printer_error("\t-> Info: \"\t\" better to use \"    \" than a tab", i);
+            if (tab[i].find("\t") != string::npos) printer_error("\t-> Info: \"\\t\" better to use \"    \" than a tab", i);
             if (tab[i].length() > 80) printer_error("\t-> Error: max line length " + to_string(tab[i].length())  + " > 80", i);
             if (!indent(tab[i])) printer_error("\t-> Error: Bad indentation", i);
             if (tab[i].find("static") != string::npos && tab[i].find("const") == string::npos && tab[i].find(";") != string::npos)
