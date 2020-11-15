@@ -16,14 +16,12 @@ SRC =	$(SRCS)main.cpp			\
 		$(PRIN)file.cpp			\
 		$(PRIN)error.cpp		\
 		\
-		CPP/src/file_handler.cpp	\
+		src/Env/Exception.cpp	\
+		src/Errors.cpp			\
+		src/Env/System.cpp		\
 		\
-		src/Exception.cpp		\
-		CPP/src/Errors.cpp		\
-		CPP/src/System.cpp		\
-		\
-		CPP/src/Cpp.cpp	\
-		CPP/src/Hpp.cpp	\
+		src/Normes/Cpp.cpp	\
+		src/Normes/Hpp.cpp	\
 
 
 SRCT =	tests/test.cpp	\
@@ -40,15 +38,13 @@ WALL =	-Wall -Wextra -Werror
 NAME =	norminette
 CRITERION = unit_tests
 
-CPPFLAGS =	-I./include/		\
-			-I./CPP/include/	\
+CPPFLAGS =	-I./include/	\
+			-I./Class		\
 			\
 			-L./library -lnorminette_c			\
 			-L./library -lnorminette_h			\
 			-L./library -lnorminette_asm		\
-			-L./library -lnorminette_cpp		\
 			-L./library -lnorminette_haskell	\
-			-L./library -lnorminette_hpp		\
 
 all:	$(NAME)
 
@@ -56,21 +52,9 @@ $(NAME):	$(OBJ)
 			make -C C/
 			make -C H/
 			make -C ASM/
-			make -C CPP/
 			make -C Haskell/
-			make -C HPP/
 			$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS) $(WALL)
 			rm -f $(OBJ)
-
-CPP:	$(OBJ)
-		make -C CPP/
-		$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS) $(WALL)
-		rm -f $(OBJ)
-
-C:		$(OBJ)
-		make -C C/
-		$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS) $(WALL)
-		rm -f $(OBJ)
 
 nuke:
 	find . \( -name '*~' \) -print -delete

@@ -5,6 +5,7 @@ Hpp::Hpp() {
     classe = 0;
     shield = false;
 }
+Hpp::~Hpp() {}
 
 int Hpp::norminette_hpp(vector<string> tab) {
     bool goType = false;
@@ -31,7 +32,7 @@ int Hpp::norminette_hpp(vector<string> tab) {
     for (size_t i = 0; i < 4; i ++)
         if (!types[i])
             goType = true;
-    if (goType)
+    if (classe > 0 && goType)
         printf("\t-> Info: Even empty, a class should contain \"public\", \"private\" and \"protected\" variable and function types.\n");
     if (!shield)
         printf("\t-> Info: no protection on prototype file, better to protect it.\n");
