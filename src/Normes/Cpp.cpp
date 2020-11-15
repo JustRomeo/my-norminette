@@ -20,7 +20,9 @@ string Cpp::find_function_name(string line) {
         name.replace(name.find("(void)"), sizeof("(void)") - 1, "");
     if (name.find("(") != string::npos && name.find(")") != string::npos)
         name = System().strtowordarray(name, "(")[0];
-    return System().strtowordarray(name, "(")[1];;
+    if (System().strtowordarray(name, "(").size() > 1)
+        name = System().strtowordarray(name, "(")[1];
+    return name;
 }
 
 void Cpp::proto(vector<string> tab, int indexe) {
@@ -45,7 +47,7 @@ void Cpp::proto(vector<string> tab, int indexe) {
 
 int Cpp::norminette_cpp(vector<string> tab) {
     _functions = 0;
-    for (int i = 0; tab[i] != ""; i ++) {
+    for (int i = 0; i < tab.size(); i ++) {
         if (tab[i].find("//") != string::npos)
             Errors().printer_error("\t-> Info: Commantary !", i);
         else if (tab[i][0] != ' ' && tab[i][0] != '\t' && tab[i].find("Test") != string::npos)

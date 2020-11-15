@@ -1,17 +1,8 @@
-#include <iostream>
-#include <vector>
-#include <string>
+#include "C.hpp"
+#include "Errors.hpp"
+#include "System.hpp"
 
-using namespace std;
-
-static size_t unit_test = 0;
-static size_t _functions = 0;
-static bool _header[4] = {false, false, false, false};
-
-void printer_error(string str, int line);
-
-static bool indent(string line)
-{
+static bool indent(string line) {
     size_t i = 0;
 
     if (line == " ")
@@ -22,42 +13,28 @@ static bool indent(string line)
     return true;
 }
 
-static void split(string str, string splitBy, vector<string>& tokens)
-{
-    string frag;
-    size_t splitAt;
-    size_t splitLen = splitBy.size();
-
-    tokens.push_back(str);
-    while (true) {
-        frag = tokens.back();
-        splitAt = frag.find(splitBy);
-        if(splitAt == string::npos)
-            break;
-        tokens.back() = frag.substr(0, splitAt);
-        tokens.push_back(frag.substr(splitAt+splitLen, frag.size() - (splitAt+splitLen)));
-    }
+C::C() {
+    _unit_test = 0;
+    _functions = 0;
+    for (size_t i = 0; i < 4; i ++)
+        _header[i] = false;
 }
+C::~C() {}
 
-static string find_function_name(string line) {
+string C::find_function_name(string line) {
     string name = line;
 
     if (name.find("static ") != string::npos)
         name.replace(name.find("static "), sizeof("static ") - 1, "");
     if (name.find("(void)") != string::npos)
         name.replace(name.find("(void)"), sizeof("(void)") - 1, "");
-    if (name.find("(") != string::npos && name.find(")") != string::npos) {
-        vector<string> results;
-        split(name, "(", results);
-        name = results[0];
-    }
-    vector<string> results;
-    split(name, " ", results);
-    name = results[1];
+    if (name.find("(") != string::npos && name.find(")") != string::npos)
+        name = System().strtowordarray(name, "(")[0];
+    name = System().strtowordarray(name, "(")[1];
     return name;
 }
 
-static void proto(string *tab, int indexe) {
+void C::proto(vector<string> tab, int indexe) {
     int rem = 1;
     int i = indexe;
 
@@ -68,7 +45,7 @@ static void proto(string *tab, int indexe) {
     for (int z = 0; fname[z]; z ++) {
         if (isupper(fname[z])) {
             string printer = "\t-> Function Name \e[93m" + fname + "\e[0m should not contain Uppercase";
-            printer_error(printer, i);
+            Errors().printer_error(printer, i);
             break;
         }
     } for (; tab[i] != "}" && tab[i] != ""; i ++)
@@ -79,13 +56,13 @@ static void proto(string *tab, int indexe) {
     i -= rem;
     if (tab[indexe].find("{") != string::npos) {
         i --;
-        printer_error("\t-> \'{\' must be next line, and NOT next to prototype", i);
+        Errors().printer_error("\t-> \'{\' must be next line, and NOT next to prototype", i);
     }
     if (i - indexe > 20)
         printf("\t-> Too long functions \e[93m%s\e[0m (%d > 20).\n", fname.c_str(), i - indexe);
 }
 
-int norminette_c(string *tab) {
+int C::norminette_c(vector<string> tab) {
     _functions = 0;
 
     if (tab[0] == "" || tab[1] == "" || tab[2] == "" || tab[3] == "" || tab[4] == "" || tab[5] == "" || tab[6] == "")
@@ -103,28 +80,28 @@ int norminette_c(string *tab) {
 
     for (int i = 0; tab[i] != ""; i ++) {
         if (tab[i].find("//") != string::npos)
-            printer_error("\t-> Info: Commantary !", i);
+            Errors().printer_error("\t-> Info: Commantary !", i);
         else if (tab[i][0] != ' ' && tab[i][0] != '\t' && tab[i].find("Test") != string::npos)
-            unit_test ++;
+            _unit_test ++;
         else {
             if (tab[i].find(";;") != string::npos)
-                printer_error("\t-> Info: \";;\"", i);
+                Errors().printer_error("\t-> Info: \";;\"", i);
             if (tab[i].find("char*") != string::npos)
-                printer_error("\t-> \"char*\" should be \"char *\"", i);
+                Errors().printer_error("\t-> \"char*\" should be \"char *\"", i);
             if (tab[i].find(" ;") != string::npos)
-                printer_error("\t-> \" ;\" do not need space before ;", i);
+                Errors().printer_error("\t-> \" ;\" do not need space before ;", i);
             if (tab[i].find("){") != string::npos)
-                printer_error("\t-> Info: \'{\' should be separate by a space", i);
+                Errors().printer_error("\t-> Info: \'{\' should be separate by a space", i);
             if (tab[i][0] != ' ' && tab[i][0] != '\t' && tab[i].find("(") != string::npos)
                 proto(tab, i);
             if (tab[i].find("\t") != string::npos)
-                printer_error("\t-> Info: \"\\t\" better to use \"    \" than a tab", i);
+                Errors().printer_error("\t-> Info: \"\\t\" better to use \"    \" than a tab", i);
             if (tab[i].length() > 80)
-                printer_error("\t-> Error: max line length " + to_string(tab[i].length())  + " > 80", i);
+                Errors().printer_error("\t-> Error: max line length " + to_string(tab[i].length())  + " > 80", i);
             if (!indent(tab[i]))
-                printer_error("\t-> Error: Bad indentation", i);
+                Errors().printer_error("\t-> Error: Bad indentation", i);
             if (tab[i].find("static") != string::npos && tab[i].find("const") == string::npos && tab[i].find(";") != string::npos)
-                printer_error("\t-> Static variable must be a constant", i);
+                Errors().printer_error("\t-> Static variable must be a constant", i);
         }
     }
     if (_functions > 5)

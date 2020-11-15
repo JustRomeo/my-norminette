@@ -10,12 +10,13 @@ using namespace std;
 #include "library.hpp"
 #include "prototype.hpp"
 
+#include "C.hpp"
 #include "Cpp.hpp"
 #include "Hpp.hpp"
 #include "System.hpp"
 
 static int normifile(string str) {
-    char *av[2];
+    char *av[2]; // = {strdup("Exec"), strdup(str.c_str())};
     av[0] = strdup("Exec");
     av[1] = strdup(str.c_str());
 
@@ -26,7 +27,7 @@ static int normifile(string str) {
     else if (str.find(".json") != string::npos);
     else if (str.find(".a") != string::npos);
     else if (str.find(".c") != string::npos)
-        norminette_c(openFile(str));
+        C().norminette_c(System().openfile(str));
     else if (str.find(".hpp") != string::npos)
         Hpp().norminette_hpp(System().openfile(str));
     else if (str.find(".py") != string::npos);

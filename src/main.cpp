@@ -4,9 +4,9 @@
 #include "prototype.hpp"
 
 static bool flags_check(std::string str) {
-    if (str == "-usage")
+    if (str == "--usage")
         usage();
-    else if (str == "-version")
+    else if (str == "--version")
         version();
     else
         return false;

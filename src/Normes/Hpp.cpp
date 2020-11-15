@@ -12,7 +12,7 @@ int Hpp::norminette_hpp(vector<string> tab) {
     bool types[3] = {false, false, false};
 
     classe = 0;
-    for (int i = 0; tab[i] != ""; i ++) {
+    for (size_t i = 0; i < tab.size(); i ++) {
         if (tab[i].find("class") != string::npos && tab[i].find("{") != string::npos)
             classe ++;
         if (tab[i].find("#ifndef") != string::npos && tab[i + 1].find("#define") != string::npos)
@@ -29,7 +29,7 @@ int Hpp::norminette_hpp(vector<string> tab) {
 
     if (classe > 1)
         printf("\t-> Error: only one class per file is allow, there are %d class in the file.\n", classe);
-    for (size_t i = 0; i < 4; i ++)
+    for (size_t i = 0; i < 3; i ++)
         if (!types[i])
             goType = true;
     if (classe > 0 && goType)

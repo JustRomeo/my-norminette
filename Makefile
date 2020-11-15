@@ -20,6 +20,7 @@ SRC =	$(SRCS)main.cpp			\
 		src/Errors.cpp			\
 		src/Env/System.cpp		\
 		\
+		src/Normes/C.cpp	\
 		src/Normes/Cpp.cpp	\
 		src/Normes/Hpp.cpp	\
 
@@ -41,7 +42,6 @@ CRITERION = unit_tests
 CPPFLAGS =	-I./include/	\
 			-I./Class		\
 			\
-			-L./library -lnorminette_c			\
 			-L./library -lnorminette_h			\
 			-L./library -lnorminette_asm		\
 			-L./library -lnorminette_haskell	\
@@ -49,7 +49,6 @@ CPPFLAGS =	-I./include/	\
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-			make -C C/
 			make -C H/
 			make -C ASM/
 			make -C Haskell/
@@ -68,7 +67,7 @@ tests_run:	$(OBJ)
 			./$(CRITERION)
 
 valgrind:	$(OBJ)
-			$(CC) -g3 -o $(NAME) $(OBJ) $(CFLAGS) $(WALL)
+			$(CC) -g3 -o $(NAME) $(OBJ) $(CPPFLAGS) $(WALL)
 			valgrind ./$(NAME)
 
 exe:	all
