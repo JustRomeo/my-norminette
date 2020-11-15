@@ -5,10 +5,6 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
-
-#include "library.hpp"
-#include "prototype.hpp"
-
 #include "C.hpp"
 #include "H.hpp"
 #include "ASM.hpp"
@@ -17,6 +13,8 @@
 #include "Haskell.hpp"
 
 #include "System.hpp"
+
+#include "prototype.hpp"
 
 using namespace std;
 static int normifile(string str) {
