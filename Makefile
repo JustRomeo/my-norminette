@@ -22,6 +22,7 @@ SRC =	$(SRCS)main.cpp			\
 		\
 		src/Normes/C.cpp		\
 		src/Normes/H.cpp		\
+		src/Normes/ASM.cpp		\
 		src/Normes/Cpp.cpp		\
 		src/Normes/Hpp.cpp		\
 		src/Normes/Haskell.cpp	\
@@ -43,17 +44,10 @@ CRITERION = unit_tests
 
 CPPFLAGS =	-I./include/	\
 			-I./Class		\
-			\
-			-L./library -lnorminette_asm		\
-			# -L./library -lnorminette_haskell	\
-			# -L./library -lnorminette_h			\
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-			# make -C H/
-			make -C ASM/
-			# make -C Haskell/
 			$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS) $(WALL)
 			rm -f $(OBJ)
 

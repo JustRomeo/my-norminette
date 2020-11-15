@@ -5,19 +5,20 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
-using namespace std;
 
 #include "library.hpp"
 #include "prototype.hpp"
 
 #include "C.hpp"
 #include "H.hpp"
+#include "ASM.hpp"
 #include "Cpp.hpp"
 #include "Hpp.hpp"
 #include "Haskell.hpp"
 
 #include "System.hpp"
 
+using namespace std;
 static int normifile(string str) {
     color_file(str);
     if (str.find(".cpp") != string::npos)
@@ -37,7 +38,7 @@ static int normifile(string str) {
     else if (str.find(".h") != string::npos)
         H().norminette_h(System().openfile(str));
     else if (str.find(".asm") != string::npos)
-        norminette_asm(openFile(str));
+        ASM().norminette_asm(System().openfile(str));
     else if (str.find(".o") != string::npos);
     else if (str.find("Makefile") != string::npos);
     return 0;
