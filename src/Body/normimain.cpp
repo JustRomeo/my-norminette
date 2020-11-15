@@ -11,15 +11,14 @@ using namespace std;
 #include "prototype.hpp"
 
 #include "C.hpp"
+#include "H.hpp"
 #include "Cpp.hpp"
 #include "Hpp.hpp"
+#include "Haskell.hpp"
+
 #include "System.hpp"
 
 static int normifile(string str) {
-    char *av[2]; // = {strdup("Exec"), strdup(str.c_str())};
-    av[0] = strdup("Exec");
-    av[1] = strdup(str.c_str());
-
     color_file(str);
     if (str.find(".cpp") != string::npos)
         Cpp().norminette_cpp(System().openfile(str));
@@ -34,9 +33,9 @@ static int normifile(string str) {
     else if (str.find(".js") != string::npos);
     else if (str.find(".sh") != string::npos);
     else if (str.find(".hs") != string::npos)
-        norminette_haskell(openFile(str));
+        Haskell().norminette_haskell(System().openfile(str));
     else if (str.find(".h") != string::npos)
-        norminette_h(openFile(str));
+        H().norminette_h(System().openfile(str));
     else if (str.find(".asm") != string::npos)
         norminette_asm(openFile(str));
     else if (str.find(".o") != string::npos);

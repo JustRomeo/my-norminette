@@ -16,13 +16,15 @@ SRC =	$(SRCS)main.cpp			\
 		$(PRIN)file.cpp			\
 		$(PRIN)error.cpp		\
 		\
-		src/Env/Exception.cpp	\
 		src/Errors.cpp			\
+		src/Env/Exception.cpp	\
 		src/Env/System.cpp		\
 		\
-		src/Normes/C.cpp	\
-		src/Normes/Cpp.cpp	\
-		src/Normes/Hpp.cpp	\
+		src/Normes/C.cpp		\
+		src/Normes/H.cpp		\
+		src/Normes/Cpp.cpp		\
+		src/Normes/Hpp.cpp		\
+		src/Normes/Haskell.cpp	\
 
 
 SRCT =	tests/test.cpp	\
@@ -42,16 +44,16 @@ CRITERION = unit_tests
 CPPFLAGS =	-I./include/	\
 			-I./Class		\
 			\
-			-L./library -lnorminette_h			\
 			-L./library -lnorminette_asm		\
-			-L./library -lnorminette_haskell	\
+			# -L./library -lnorminette_haskell	\
+			# -L./library -lnorminette_h			\
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-			make -C H/
+			# make -C H/
 			make -C ASM/
-			make -C Haskell/
+			# make -C Haskell/
 			$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS) $(WALL)
 			rm -f $(OBJ)
 
