@@ -10,6 +10,9 @@ using namespace std;
 #include "library.hpp"
 #include "prototype.hpp"
 
+#include "Cpp.hpp"
+#include "Hpp.hpp"
+#include "System.hpp"
 
 static int normifile(string str) {
     char *av[2];
@@ -18,14 +21,14 @@ static int normifile(string str) {
 
     color_file(str);
     if (str.find(".cpp") != string::npos)
-        norminette_cpp(openFile(str));
+        Cpp().norminette_cpp(System().openfile(str));
     else if (str.find(".cabal") != string::npos);
     else if (str.find(".json") != string::npos);
     else if (str.find(".a") != string::npos);
     else if (str.find(".c") != string::npos)
         norminette_c(openFile(str));
     else if (str.find(".hpp") != string::npos)
-        norminette_hpp(openFile(str));
+        Hpp().norminette_hpp(System().openfile(str));
     else if (str.find(".py") != string::npos);
     else if (str.find(".js") != string::npos);
     else if (str.find(".sh") != string::npos);

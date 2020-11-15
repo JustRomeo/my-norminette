@@ -11,17 +11,25 @@ SRCS = src/
 
 SRC =	$(SRCS)main_cpp_files.cpp	\
 		$(SRCS)file_handler.cpp		\
+		\
+		$(SRCS)Errors.cpp	\
+		$(SRCS)System.cpp	\
+		\
+		$(SRCS)Cpp.cpp	\
+		$(SRCS)Hpp.cpp	\
 
 OBJ =	$(SRC:.cpp=.o)
 
-NAME =	libnorminette_cpp.a
+# NAME =	libnorminette_cpp.a
+NAME = TestCppClass
 
-CC	=	ar rc
+# CC	=	ar rc
+CC = g++
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-			$(CC) -o $(NAME) $(OBJ)
+			$(CC) -o $(NAME) $(OBJ) -I./include
 			rm -f $(OBJ)
 			mv $(NAME) $(FULLPWD)library/
 

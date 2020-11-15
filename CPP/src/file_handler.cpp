@@ -5,12 +5,12 @@
 using namespace std;
 
 static string *strtowordarray(string str) {
+    string *tab;
     string token;
     size_t pos = 0;
-    string delimiter = "\n";
-    string *tab;
     int mallok = 0;
     int indexe = 0;
+    string delimiter = "\n";
 
     for (int z = 0; z < str.length(); z ++)
         if (str[z] == '\n')
@@ -18,7 +18,8 @@ static string *strtowordarray(string str) {
     tab = new string[mallok + 1];
     for (; (pos = str.find(delimiter)) != string::npos; indexe ++) {
         token = str.substr(0, pos);
-        if (token == "") tab[indexe] = " ";
+        if (token == "")
+            tab[indexe] = " ";
         else tab[indexe] = token;
         str.erase(0, pos + delimiter.length());
     }

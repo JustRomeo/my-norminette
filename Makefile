@@ -15,6 +15,15 @@ SRC =	$(SRCS)main.cpp			\
 		$(FLAG)infos.cpp		\
 		$(PRIN)file.cpp			\
 		$(PRIN)error.cpp		\
+		\
+		CPP/src/file_handler.cpp	\
+		\
+		src/Exception.cpp		\
+		CPP/src/Errors.cpp		\
+		CPP/src/System.cpp		\
+		\
+		CPP/src/Cpp.cpp	\
+		CPP/src/Hpp.cpp	\
 
 
 SRCT =	tests/test.cpp	\
@@ -32,6 +41,7 @@ NAME =	norminette
 CRITERION = unit_tests
 
 CPPFLAGS =	-I./include/		\
+			-I./CPP/include/	\
 			\
 			-L./library -lnorminette_c			\
 			-L./library -lnorminette_h			\
