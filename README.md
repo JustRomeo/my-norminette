@@ -1,2 +1,7 @@
-# my-norminette
-A program which check a code, and list all what is not complient to the norm code.
+# MyNorminette
+
+# Todo
+- Add ignore folder flag
+- add ignore extension flag
+- add ignore file flag
+- add ignore unkown
