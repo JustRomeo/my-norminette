@@ -55,7 +55,7 @@ int Cpp::norminette_cpp(vector<string> tab) {
         else {
             if (tab[i].find(";;") != string::npos)
                 Errors().printer_error("\t-> Info: \";;\"", i);
-            if (tab[i].find("char *") != string::npos)
+            if (tab[i].find("char **") == string::npos && tab[i].find("char *") != string::npos)
                 Errors().printer_error("\t-> \"char *\" must be a \"string\"", i);
             if (tab[i].find(" ;") != string::npos)
                 Errors().printer_error("\t-> \" ;\" do not need space before ;", i);

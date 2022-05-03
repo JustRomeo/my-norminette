@@ -7,26 +7,26 @@
 
 SRCS = src/
 BODY = $(SRCS)Body/
+PRIN = $(SRCS)Displayer/
 FLAG = $(SRCS)Flags/
-PRIN = $(SRCS)printer/
 
-SRC =	$(SRCS)main.cpp			\
-		$(BODY)normimain.cpp	\
-		$(FLAG)infos.cpp		\
-		$(PRIN)file.cpp			\
-		$(PRIN)error.cpp		\
-		\
-		src/Errors.cpp			\
-		src/Env/Exception.cpp	\
-		src/Env/System.cpp		\
-		\
-		src/Normes/C.cpp		\
-		src/Normes/H.cpp		\
-		src/Normes/ASM.cpp		\
-		src/Normes/Cpp.cpp		\
-		src/Normes/Hpp.cpp		\
-		src/Normes/Haskell.cpp	\
 
+SRC =	$(SRCS)main.cpp				\
+		$(BODY)normimain.cpp		\
+		$(FLAG)infos.cpp			\
+		\
+		src/Handler/Errors.cpp		\
+		src/Handler/Displayer.cpp	\
+		src/Env/Exception.cpp		\
+		src/Env/System.cpp			\
+		\
+		src/Normes/C.cpp			\
+		src/Normes/H.cpp			\
+		src/Normes/ASM.cpp			\
+		src/Normes/Cpp.cpp			\
+		src/Normes/Hpp.cpp			\
+		src/Normes/Haskell.cpp		\
+		src/Normes/Python.cpp		\
 
 SRCT =	tests/test.cpp	\
 

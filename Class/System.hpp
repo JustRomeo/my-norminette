@@ -20,6 +20,7 @@ class System {
         vector<string> strtowordarray(string str, string delimiter);
 
     private:
+    protected:
 };
 
 #endif

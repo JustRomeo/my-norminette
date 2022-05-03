@@ -11,6 +11,7 @@
 #include "Cpp.hpp"
 #include "Hpp.hpp"
 #include "Haskell.hpp"
+#include "Python.hpp"
 
 #include "System.hpp"
 
@@ -21,6 +22,7 @@ static int normifile(string str) {
     color_file(str);
     if (str.find(".cpp") != string::npos)
         Cpp().norminette_cpp(System().openfile(str));
+    else if (str.find(".cmake") != string::npos);
     else if (str.find(".cabal") != string::npos);
     else if (str.find(".json") != string::npos);
     else if (str.find(".a") != string::npos);
@@ -28,7 +30,8 @@ static int normifile(string str) {
         C().norminette_c(System().openfile(str));
     else if (str.find(".hpp") != string::npos)
         Hpp().norminette_hpp(System().openfile(str));
-    else if (str.find(".py") != string::npos);
+    else if (str.find(".py") != string::npos)
+        Python().norminette_python(System().openfile(str));
     else if (str.find(".js") != string::npos);
     else if (str.find(".sh") != string::npos);
     else if (str.find(".hs") != string::npos)
@@ -39,6 +42,12 @@ static int normifile(string str) {
         ASM().norminette_asm(System().openfile(str));
     else if (str.find(".o") != string::npos);
     else if (str.find("Makefile") != string::npos);
+    else if (str.find(".xml") != string::npos);
+    else if (str.find(".md") != string::npos);
+    else if (str.find(".sql") != string::npos);
+    else if (str.find(".jpg") != string::npos);
+    else if (str.find(".png") != string::npos);
+    else if (str.find(".row") != string::npos);
     return 0;
 }
 
