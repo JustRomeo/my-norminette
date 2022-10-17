@@ -49,7 +49,6 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 			$(CC) -o $(NAME) $(OBJ) $(CPPFLAGS) $(WALL)
-			rm -f $(OBJ)
 
 nuke:
 	find . \( -name '*~' \) -print -delete

@@ -13,28 +13,27 @@ Some other are not even detected by the program.
 <br>
 | Extension |  Code  |  analyze  |
 | --------- | :----: | :-------: |
-| .cpp | Yes | Yes |
-| .cmake | No | No |
-| .cabal | Yes | No |
-| .json | No | No |
-| .a | No | No |
-| .c | Yes | Yes |
-| .hpp | No | Yes |
-| .py | Yes | Yes |
-| .js | No | No |
-| .sh | No | No |
-| .hs | No | No |
-| .h | No | Yes |
-| .asm | Yes | Yes |
-| .o | No | No |
 | Makefile | No | No |
-| .xml | No | No |
-| .md | No | No |
-| .sql | No | No |
+| .a | No | No |
+| .asm | Yes | Yes |
+| .c | Yes | Yes |
+| .cabal | Yes | No |
+| .cmake | No | No |
+| .cpp | Yes | Yes |
+| .h | No | Yes |
+| .hpp | No | Yes |
+| .hs | No | No |
 | .jpg | No | No |
+| .js | No | No |
+| .json | No | No |
+| .md | No | No |
+| .o | No | No |
 | .png | No | No |
+| .py | Yes | Yes |
 | .row | No | No |
-
+| .sh | No | No |
+| .sql | No | No |
+| .xml | No | No |
 
 
 ## Todo
@@ -45,7 +44,11 @@ Some other are not even detected by the program.
 - add ignore file flag
 - add ignore unkown
 
+### Issues Update
+- C proto. functions segfault
+
 ### System Updates:
+- Add norme errors name (G3, O1, ...)
 - Double cotes (``"``) detection
 - Simple cotes (``'``) detection
 
